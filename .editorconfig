@@ -1,0 +1,52 @@
+################################################################################
+#
+# Editorconfig
+#
+# An `.editorconfig` file helps maintain consistent coding styles for multiple
+# developers working on the same project across various editors and IDEs. see
+# more at <https://editorconfig.org/>
+#
+################################################################################
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 100
+tab_width = 2
+trim_trailing_whitespace = true
+
+[*.{kt,kts}]
+ktlint_code_style = android
+ktlint_no-wildcard-imports = disabled
+ktlint_import-ordering = disabled
+# Back quote fun name can go over 100 length
+ktlint_ignore_back_ticked_identifier = true
+ktlint_function_naming_ignore_when_annotated_with=Composable, Test
+
+[*.{js,ts,json,json5}]
+max_line_length = 80
+indent_size = 2
+
+[*.md]
+max_line_length = 80
+indent_size = 2
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+
+[*.{sh,bash}]
+indent_size = 2
+switch_case_indent = true # like -ci
+
+# Python [PEP8]
+[*.py]
+max_line_length = 79
+
+[.*rc]
+indent_size = 2

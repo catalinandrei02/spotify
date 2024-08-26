@@ -5,4 +5,7 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.com.google.dagger.hilt.android) apply false
     alias(libs.plugins.com.google.devtools.ksp) apply false
+    alias(libs.plugins.com.diffplug.spotless) apply false
 }
+
+apply(plugin = "com.diffplug.spotless", from = "./spotless.gradle")

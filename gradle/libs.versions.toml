@@ -11,6 +11,7 @@ activityCompose = "1.9.1"
 composeBom = "2024.08.00"
 dagger-hilt = "2.44"
 ksp-version = "2.0.20-1.0.24"
+spotless = "7.0.0.BETA2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +39,7 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
+com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 [bundles]
 

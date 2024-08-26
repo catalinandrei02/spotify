@@ -1,0 +1,22 @@
+spotless {
+    kotlin {
+        target("**/*.kt")
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+        licenseHeader("/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */")
+    }
+    format("misc") {
+        target("**/*.gradle", "**/*.md", "**/.gitignore")
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    format("xml") {
+        target("**/*.xml")
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}

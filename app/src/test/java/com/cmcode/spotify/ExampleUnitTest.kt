@@ -1,8 +1,8 @@
+/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */
 package com.cmcode.spotify
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

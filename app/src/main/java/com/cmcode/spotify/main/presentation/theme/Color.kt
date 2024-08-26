@@ -1,3 +1,4 @@
+/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */
 package com.cmcode.spotify.main.presentation.theme
 
 import androidx.compose.ui.graphics.Color
