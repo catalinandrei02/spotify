@@ -1,4 +1,4 @@
-package com.cmcode.spotify.ui.theme
+package com.cmcode.spotify.main.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
