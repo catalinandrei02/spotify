@@ -2,42 +2,49 @@
 package com.cmcode.spotify.main
 
 import android.os.Bundle
+import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.cmcode.spotify.main.presentation.WelcomeComposable
 import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+/** Activity class used for displaying the screens of the Spotify main menu. */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        hideAndroidUI()
+
         setContent {
-            SpotifyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(name = "Android", modifier = Modifier.padding(innerPadding))
-                }
+            WelcomeComposable()
+        }
+    }
+
+    private fun hideAndroidUI() {
+        window.insetsController?.apply {
+            systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            hide(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE)
+        }
+    }
+
+    @Composable
+    private fun MainScreen() {
+        WelcomeComposable()
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    private fun Preview() {
+        SpotifyTheme {
+            Surface {
+                MainScreen()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(
-    name: String,
-    modifier: Modifier = Modifier,
-) {
-    Text(text = "Hello $name!", modifier = modifier)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SpotifyTheme { Greeting("Android") }
 }

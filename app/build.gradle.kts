@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.com.google.dagger.hilt.android)
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.com.google.services)
 }
 
 android {
@@ -53,13 +54,21 @@ android {
 }
 
 dependencies {
-
     implementation(libs.bundles.core.app)
     implementation(platform(libs.androidx.compose.bom))
-    ksp(libs.bundles.core.app)
+    implementation(platform(libs.firebase.bom))
 
-    testImplementation(libs.bundles.core.app)
-    androidTestImplementation(libs.bundles.core.app)
+    implementation(libs.firebase.analytics)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.benchmark.macro)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    ksp(libs.hilt.android.compiler)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    debugImplementation(libs.bundles.core.app)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.tooling.preview)
 }
