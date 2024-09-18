@@ -21,7 +21,7 @@ tab_width = 2
 trim_trailing_whitespace = true
 
 [*.{kt,kts}]
-ktlint_code_style = android
+ktlint_official = android
 ktlint_no-wildcard-imports = disabled
 ktlint_import-ordering = disabled
 # Back quote fun name can go over 100 length

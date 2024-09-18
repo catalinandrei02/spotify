@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">spotify</string>
+    <string name="empty_string"></string>
+    <string name="login">Log in</string>
+    <string name="sign_up">Sign up free</string>
+    <string name="continue_google">Continue with Google</string>
+    <string name="continue_facebook">Continue with Facebook</string>
+    <string name="continue_apple">Continue with Apple</string>
+    <string name="headline">Millions of Songs.\n Free on Spotify.</string>
+    <string name="create_account">Create account</string>
+    <string name="what_email">What’s your email?</string>
+    <string name="label_email">You’ll need to confirm this email later.</string>
+    <string name="next">Next</string>
+    <string name="create_password">Create a password</string>
+    <string name="label_password">Use at least 8 characters.</string>
+    <string name="what_gender">What’s your gender?</string>
+    <string name="what_name">What’s your name?</string>
+    <string name="label_name">This appears on your spotify profile</string>
+    <string name="disclaimer_one">By tapping on “Create account”, you agree to the spotify Terms of Use.</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="disclaimer_two">To learn more about how Spotify collect, uses, shares and protects your personal data, Please see the Spotify Privacy Policy.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="gdpr1">Please send me news and offers from Spotify.</string>
+    <string name="gdpr2">Share my registration data with Spotify’s content providers for marketing purposes.</string>
 </resources>
