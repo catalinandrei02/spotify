@@ -7,10 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cmcode.spotify.R
@@ -26,7 +32,10 @@ import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 fun NameScreen(
     onBackClick: () -> Unit = {},
     onCreateClick: () -> Unit = {},
+    onNameEntered: (String) -> Unit = {}
 ) {
+    var name by rememberSaveable { mutableStateOf("") }
+
     Column(
         modifier =
             Modifier
@@ -35,8 +44,16 @@ fun NameScreen(
                 .statusBarsPadding(),
     ) {
         TopBar(R.string.create_account) { onBackClick() }
-        CustomInputBox(R.string.what_name, R.string.label_name)
-
+        CustomInputBox(
+            R.string.what_name,
+            R.string.label_name,
+            value = name,
+            onValueChange = {
+                name = it
+                onNameEntered(it)
+            },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
+        )
         Spacer(modifier = Modifier.height(20.dp))
         LabelMediumText(R.string.disclaimer_one, Modifier.align(Alignment.Start))
 
@@ -66,6 +83,7 @@ fun NameScreen(
             text = "Create an account",
             onClick = onCreateClick,
             modifier = Modifier.align(Alignment.CenterHorizontally),
+            enabled = true
         )
     }
 }

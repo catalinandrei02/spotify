@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Surface
@@ -22,6 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cmcode.spotify.R
 import com.cmcode.spotify.main.presentation.theme.CheckboxGrey
@@ -48,21 +50,31 @@ fun TopBar(
 fun CustomInputBox(
     title: Int,
     label: Int,
+    value: String,
+    onValueChange: (String) -> Unit, // 👈 Allows updating parent state
     modifier: Modifier = Modifier,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
-    Spacer(Modifier.height(20.dp))
-    Row(
-        modifier = Modifier.fillMaxWidth(),
+    Column(
+        modifier = modifier.fillMaxWidth()
     ) {
-        HeadlineSmallText(title, Modifier.align(Alignment.CenterVertically))
-    }
-    Spacer(Modifier.height(2.dp))
-    TextField(
-        shape = RoundedCornerShape(5.dp),
-        value = "",
-        onValueChange = {},
-        singleLine = true,
-        colors =
+        Spacer(Modifier.height(20.dp))
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            HeadlineSmallText(title, Modifier.align(Alignment.CenterVertically))
+        }
+
+        Spacer(Modifier.height(8.dp)) // Increased spacing for clarity
+
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            shape = RoundedCornerShape(5.dp),
+            keyboardOptions = keyboardOptions,
+            visualTransformation = visualTransformation,
+            colors =
             TextFieldDefaults.colors(
                 focusedTextColor = Color.White,
                 unfocusedTextColor = Color.White,
@@ -70,16 +82,17 @@ fun CustomInputBox(
                 unfocusedContainerColor = TextFieldGrey,
                 errorContainerColor = Color.Red,
             ),
-        modifier =
-            modifier
-                .width(365.dp)
-                .height(51.dp),
-    )
-    Spacer(Modifier.height(8.dp))
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        LabelSmallText(label, Modifier.align(Alignment.CenterVertically))
+            modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(51.dp)
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            LabelSmallText(label, Modifier.align(Alignment.CenterVertically))
+        }
     }
 }
 

@@ -1,40 +1,38 @@
-/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */
 package com.cmcode.spotify.main.core
 
 import androidx.lifecycle.LiveData
 import com.cmcode.spotify.main.domain.User
 import com.google.firebase.auth.FirebaseUser
 
-/** Repository responsible with login and register users. */
+/** Repository responsible for login and registration of users. */
 interface CommonRepository {
-    /** Method used to sign in using email and password */
-    fun loginWithEmailAndPassword(
-        email: String,
-        password: String,
-    )
 
-    /** Method used to register in using email and password */
-    fun registerWithEmailAndPassword(
+    /** Sign in using email and password */
+    suspend fun loginWithEmailAndPassword(email: String, password: String): Boolean
+
+    /** Register new user */
+    suspend fun registerWithEmailAndPassword(
         email: String,
         password: String,
         name: String,
-        gender: String,
+        gender: String
     ): String
 
-    /** Method used to return current user. */
+    /** Return current user */
     fun getCurrentUser(): FirebaseUser?
 
+    /** Return current user ID */
     fun getUserId(): String?
 
-    /** Method used to return current user data. */
+    /** Return current user data */
     fun getCurrentUserData(): LiveData<User?>
 
-    /** Method used to update current user data. */
-    fun updateCurrentUserData(newSold: Int)
+    /** Update current user data */
+    suspend fun updateCurrentUserData(newSold: Int)
 
-    /** Method used to reset user password. */
-    fun resetPassword(email: String): String
+    /** Reset user password */
+    suspend fun resetPassword(email: String): String
 
-    /** Method used to sign user out. */
-    fun signOutUser()
+    /** Sign user out */
+    suspend fun signOutUser()
 }

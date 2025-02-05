@@ -149,12 +149,14 @@ fun WhiteButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean
 ) {
     Button(
         shape = RoundedCornerShape(CORNER_SHAPE),
         colors = ButtonDefaults.buttonColors(containerColor = ButtonWhite),
         onClick = onClick,
         modifier = modifier.padding(8.dp),
+        enabled = enabled
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
