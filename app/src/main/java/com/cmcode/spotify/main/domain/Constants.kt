@@ -4,20 +4,19 @@ package com.cmcode.spotify.main.domain
 import androidx.compose.ui.unit.dp
 
 object Constants {
-
-    /* Error Message */
+    // Error Message
     const val LOGIN_ERROR_MESSAGE = "Login Failed."
     const val REGISTER_ERROR_MESSAGE = "Register Failed."
     const val RESET_PASSWORD_ERROR_MESSAGE = "Password Reset Failed."
 
-    /* Successful Operation Message */
+    // Successful Operation Message
     const val REGISTER_SUCCESS_MESSAGE = "Registered Successfully."
     const val RESET_PASSWORD_SUCCESS_MESSAGE = "Password reset email sent."
 
-    /* Firebase */
+    // Firebase
     const val USERS_COLLECTION = "users"
 
-    /* Compose */
+    // Compose
     const val BUTTON_WIDTH = 0.85f
 
     val BUTTON_HEIGHT = 55.dp

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,43 +23,48 @@ import com.cmcode.spotify.main.presentation.theme.SpotifyGreen
 import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 
 @Composable
-fun NameComposable() {
+fun NameScreen(
+    onBackClick: () -> Unit = {},
+    onCreateClick: () -> Unit = {},
+) {
     Column(
         modifier =
-        Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .statusBarsPadding(),
     ) {
-        TopBar(R.string.create_account) { /*TODO*/ }
+        TopBar(R.string.create_account) { onBackClick() }
         CustomInputBox(R.string.what_name, R.string.label_name)
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         LabelMediumText(R.string.disclaimer_one, Modifier.align(Alignment.Start))
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         LabelMediumText(
             R.string.terms_of_use,
             Modifier.align(Alignment.Start),
             color = SpotifyGreen,
         )
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         LabelMediumText(R.string.disclaimer_two, Modifier.align(Alignment.Start))
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         LabelMediumText(
             R.string.privacy_policy,
             Modifier.align(Alignment.Start),
             color = SpotifyGreen,
         )
 
+        // Checkboxes for GDPR agreements
         customCheckboxes(R.string.gdpr1)
         customCheckboxes(R.string.gdpr2)
 
-        Spacer(Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         WhiteButton(
-            "Create an account",
-            onClick = { /*TODO*/ },
+            text = "Create an account",
+            onClick = onCreateClick,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
     }
@@ -66,10 +72,10 @@ fun NameComposable() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewName() {
+fun NameScreenPreview() {
     SpotifyTheme {
         Surface {
-            NameComposable()
+            NameScreen()
         }
     }
 }

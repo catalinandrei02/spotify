@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,19 +20,23 @@ import com.cmcode.spotify.main.domain.TopBar
 import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 
 @Composable
-fun GenderComposable() {
+fun GenderScreen(
+    onBackClick: () -> Unit = {},
+    onNextClick: () -> Unit = {},
+) {
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .statusBarsPadding(),
     ) {
-        TopBar(R.string.create_account) { /*TODO*/ }
+        TopBar(R.string.create_account) { onBackClick() }
         CustomInputBox(R.string.what_gender, R.string.empty_string)
-        Spacer(Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         GreyButton(
-            "Next",
-            onClick = { /*TODO*/ },
+            text = "Next",
+            onClick = onNextClick,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
     }
@@ -39,10 +44,10 @@ fun GenderComposable() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewGender() {
+fun GenderScreenPreview() {
     SpotifyTheme {
         Surface {
-            GenderComposable()
+            GenderScreen()
         }
     }
 }

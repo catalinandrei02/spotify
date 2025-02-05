@@ -1,3 +1,4 @@
+/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */
 package com.cmcode.spotify.main.core
 
 import androidx.lifecycle.LiveData
@@ -6,16 +7,18 @@ import com.google.firebase.auth.FirebaseUser
 
 /** Repository responsible with login and register users. */
 interface CommonRepository {
-
     /** Method used to sign in using email and password */
-    fun loginWithEmailAndPassword(email: String, password: String)
+    fun loginWithEmailAndPassword(
+        email: String,
+        password: String,
+    )
 
     /** Method used to register in using email and password */
     fun registerWithEmailAndPassword(
         email: String,
         password: String,
         name: String,
-        gender: String
+        gender: String,
     ): String
 
     /** Method used to return current user. */
