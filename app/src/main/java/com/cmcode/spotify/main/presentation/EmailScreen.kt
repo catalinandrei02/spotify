@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,19 +20,23 @@ import com.cmcode.spotify.main.domain.TopBar
 import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 
 @Composable
-fun PasswordComposable() {
+fun EmailScreen(
+    onBackClick: () -> Unit = {},
+    onNextClick: () -> Unit = {},
+) {
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .statusBarsPadding(),
     ) {
-        TopBar(R.string.create_account) { /*TODO*/ }
-        CustomInputBox(R.string.create_password, R.string.label_password)
-        Spacer(Modifier.height(50.dp))
+        TopBar(R.string.create_account, onClick = onBackClick)
+        CustomInputBox(R.string.what_email, R.string.label_email)
+        Spacer(modifier = Modifier.height(50.dp))
         GreyButton(
-            "Next",
-            onClick = { /*TODO*/ },
+            text = "Next",
+            onClick = onNextClick,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
     }
@@ -39,10 +44,10 @@ fun PasswordComposable() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewPassword() {
+private fun EmailScreenPreview() {
     SpotifyTheme {
         Surface {
-            PasswordComposable()
+            EmailScreen()
         }
     }
 }

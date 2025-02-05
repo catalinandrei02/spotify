@@ -7,70 +7,104 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 
 @Composable
 fun TitleText(
-    string: Int,
+    textRes: Int,
     modifier: Modifier = Modifier,
+    color: Color = SpotifyTheme.colorScheme.onBackground,
+    textAlign: TextAlign? = null,
+    style: TextStyle = MaterialTheme.typography.titleMedium,
 ) {
-    Text(
-        color = Color.White,
-        style = MaterialTheme.typography.titleMedium,
-        text = stringResource(string),
+    BaseText(
+        textRes = textRes,
         modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        style = style,
     )
 }
 
 @Composable
 fun HeadlineSmallText(
-    string: Int,
+    textRes: Int,
     modifier: Modifier = Modifier,
+    color: Color = SpotifyTheme.colorScheme.onBackground,
+    textAlign: TextAlign? = null,
 ) {
-    Text(
-        color = Color.White,
-        style = MaterialTheme.typography.headlineSmall,
-        text = stringResource(string),
+    BaseText(
+        textRes = textRes,
         modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        style = MaterialTheme.typography.headlineSmall,
     )
 }
 
 @Composable
 fun HeadlineLargeText(
-    string: Int,
+    textRes: Int,
     modifier: Modifier = Modifier,
+    color: Color = SpotifyTheme.colorScheme.onBackground,
+    textAlign: TextAlign? = null,
 ) {
-    Text(
-        color = Color.White,
-        style = MaterialTheme.typography.headlineLarge,
-        text = stringResource(string),
+    BaseText(
+        textRes = textRes,
         modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        style = MaterialTheme.typography.headlineLarge,
     )
 }
 
 @Composable
 fun LabelMediumText(
-    string: Int,
+    textRes: Int,
     modifier: Modifier = Modifier,
-    color: Color = Color.White,
+    color: Color = SpotifyTheme.colorScheme.onBackground,
+    textAlign: TextAlign? = null,
 ) {
-    Text(
-        color = color,
-        style = MaterialTheme.typography.labelMedium,
-        text = stringResource(string),
+    BaseText(
+        textRes = textRes,
         modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        style = MaterialTheme.typography.labelMedium,
     )
 }
 
 @Composable
 fun LabelSmallText(
-    string: Int,
+    textRes: Int,
     modifier: Modifier = Modifier,
-    color: Color = Color.White,
+    color: Color = SpotifyTheme.colorScheme.onBackground,
+    textAlign: TextAlign? = null,
+) {
+    BaseText(
+        textRes = textRes,
+        modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        style = MaterialTheme.typography.labelSmall,
+    )
+}
+
+@Composable
+private fun BaseText(
+    textRes: Int,
+    modifier: Modifier,
+    color: Color,
+    textAlign: TextAlign?,
+    style: TextStyle,
 ) {
     Text(
-        color = color,
-        style = MaterialTheme.typography.labelSmall,
-        text = stringResource(string),
+        text = stringResource(id = textRes),
         modifier = modifier,
+        color = color,
+        style = style,
+        textAlign = textAlign,
     )
 }

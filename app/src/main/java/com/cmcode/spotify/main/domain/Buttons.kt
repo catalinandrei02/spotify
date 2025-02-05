@@ -183,9 +183,7 @@ fun ClickableText(
         text = text,
         style = MaterialTheme.typography.labelMedium,
         textAlign = TextAlign.Center,
-        modifier =
-            Modifier
-                .clickable { onClick() },
+        modifier = Modifier.clickable { onClick() },
     )
 }
 

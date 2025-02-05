@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -23,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cmcode.spotify.R
 import com.cmcode.spotify.main.presentation.theme.CheckboxGrey
@@ -46,7 +44,6 @@ fun TopBar(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomInputBox(
     title: Int,
@@ -66,9 +63,11 @@ fun CustomInputBox(
         onValueChange = {},
         singleLine = true,
         colors =
-            TextFieldDefaults.textFieldColors(
+            TextFieldDefaults.colors(
                 focusedTextColor = Color.White,
-                containerColor = TextFieldGrey,
+                unfocusedTextColor = Color.White,
+                focusedContainerColor = TextFieldGrey,
+                unfocusedContainerColor = TextFieldGrey,
                 errorContainerColor = Color.Red,
             ),
         modifier =
@@ -112,9 +111,8 @@ fun customCheckboxes(text: Int): Boolean {
     return isChecked
 }
 
-@Preview(showBackground = true)
 @Composable
-private fun PreviewCheckBox() {
+fun PreviewCheckBox() {
     SpotifyTheme {
         Surface {
             Column {

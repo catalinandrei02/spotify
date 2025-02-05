@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.cmcode.spotify"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.cmcode.spotify"
-        minSdk = 34
-        targetSdk = 34
+        minSdk = 35
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -58,6 +58,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))
 
+    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.firebase.analytics)
     implementation(libs.hilt.android)
     implementation(libs.androidx.benchmark.macro)
