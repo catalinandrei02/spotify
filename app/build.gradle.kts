@@ -58,6 +58,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))
 
+    implementation(libs.tablericons)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.firebase.analytics)
     implementation(libs.hilt.android)

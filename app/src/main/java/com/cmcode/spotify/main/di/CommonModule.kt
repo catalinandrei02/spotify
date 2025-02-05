@@ -1,4 +1,3 @@
-/* Copyright (c) 2020-2021 and later Catalin Moldovan Code. */
 package com.cmcode.spotify.main.di
 
 import com.cmcode.spotify.main.core.CommonRepository
@@ -17,9 +16,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-fun interface CommonModule {
+abstract class CommonModule {
+
     @Binds
-    fun bindCommonRepository(commonRepositoryImpl: CommonRepositoryImpl): CommonRepository
+    abstract fun bindCommonRepository(commonRepositoryImpl: CommonRepositoryImpl): CommonRepository
 
     companion object {
         @Provides

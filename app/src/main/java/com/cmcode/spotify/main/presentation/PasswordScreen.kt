@@ -7,10 +7,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cmcode.spotify.R
@@ -23,7 +30,10 @@ import com.cmcode.spotify.main.presentation.theme.SpotifyTheme
 fun PasswordScreen(
     onBackClick: () -> Unit = {},
     onNextClick: () -> Unit = {},
+    onPasswordEntered: (String) -> Unit = {}
 ) {
+    var password by rememberSaveable { mutableStateOf("") }
+
     Column(
         modifier =
             Modifier
@@ -32,7 +42,17 @@ fun PasswordScreen(
                 .statusBarsPadding(),
     ) {
         TopBar(R.string.create_account) { onBackClick() }
-        CustomInputBox(R.string.create_password, R.string.label_password)
+        CustomInputBox(
+            R.string.create_password,
+            R.string.label_password,
+            value = password,
+            onValueChange = {
+                password = it
+                onPasswordEntered(it)
+            },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password),
+            visualTransformation = PasswordVisualTransformation()
+        )
         Spacer(modifier = Modifier.height(50.dp))
         GreyButton(
             text = "Next",
