@@ -4,8 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cmcode.spotify.main.core.CommonRepository
 import com.cmcode.spotify.main.domain.User
+import com.facebook.AccessToken
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
@@ -34,6 +38,36 @@ class CommonRepositoryImpl @Inject constructor(
             }
         }
         return userData
+    }
+
+    override suspend fun signInWithGoogle(idToken: String): Boolean {
+        return try {
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            val authResult = firebaseAuth.signInWithCredential(credential).await()
+            authResult.user != null
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun signInWithFacebook(token: AccessToken): Boolean {
+        return try {
+            val credential = FacebookAuthProvider.getCredential(token.token)
+            val authResult = firebaseAuth.signInWithCredential(credential).await()
+            authResult.user != null
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun signInWithApple(idToken: String): Boolean {
+        return try {
+            val credential = OAuthProvider.newCredentialBuilder("apple.com").setIdToken(idToken).build()
+            val authResult = firebaseAuth.signInWithCredential(credential).await()
+            authResult.user != null
+        } catch (e: Exception) {
+            false
+        }
     }
 
     override suspend fun loginWithEmailAndPassword(email: String, password: String): Boolean {

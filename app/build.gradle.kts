@@ -58,6 +58,11 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))
 
+    /* 3rd party authentication */
+    implementation(libs.play.services.auth)
+    implementation(libs.facebook.login)
+
+    /* core app dependencies */
     implementation(libs.tablericons)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.firebase.analytics)

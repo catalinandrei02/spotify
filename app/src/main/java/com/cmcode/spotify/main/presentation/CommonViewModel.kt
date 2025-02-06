@@ -4,6 +4,7 @@ package com.cmcode.spotify.main.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmcode.spotify.main.core.CommonRepository
+import com.facebook.AccessToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -42,6 +43,27 @@ class CommonViewModel @Inject constructor(
         viewModelScope.launch {
             val result = commonRepository.resetPassword(email)
             _resetPasswordState.value = result
+        }
+    }
+
+    fun signInWithGoogle(idToken: String, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val success = commonRepository.signInWithGoogle(idToken)
+            onResult(success)
+        }
+    }
+
+    fun signInWithFacebook(token: AccessToken, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val success = commonRepository.signInWithFacebook(token)
+            onResult(success)
+        }
+    }
+
+    fun signInWithApple(idToken: String, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val success = commonRepository.signInWithApple(idToken)
+            onResult(success)
         }
     }
 
