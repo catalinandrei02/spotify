@@ -1,10 +1,13 @@
 package com.cmcode.spotify.main.presentation.navigation
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,11 +34,22 @@ fun SpotifyNavHost(
 
     NavHost(navController = navController, startDestination = Routes.WELCOME) {
         composable(Routes.WELCOME) {
+            val context = LocalContext.current
+
+            val googleSignInLauncher =
+                rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    AuthHandler.handleGoogleSignInResult(result.data, viewModel, navController)
+                }
+
             WelcomeScreen(
                 onSignUpClick = { navController.navigate(Routes.EMAIL) },
-                onGoogleClick = { /* Handle Google sign in */ },
-                onFacebookClick = { /* Handle Facebook sign in */ },
-                onAppleClick = { /* Handle Apple sign in */ },
+                onGoogleClick = {
+                    AuthHandler.googleSignIn(context) { intent ->
+                        googleSignInLauncher.launch(intent)
+                    }
+                },
+                onFacebookClick = { AuthHandler.facebookSignIn(context, viewModel, navController) },
+                onAppleClick = { AuthHandler.appleSignIn(context, viewModel, navController) },
                 onLoginClick = { navController.navigate(Routes.LOGIN) },
             )
         }

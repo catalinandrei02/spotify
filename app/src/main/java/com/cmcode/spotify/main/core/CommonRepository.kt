@@ -2,10 +2,17 @@ package com.cmcode.spotify.main.core
 
 import androidx.lifecycle.LiveData
 import com.cmcode.spotify.main.domain.User
+import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseUser
 
 /** Repository responsible for login and registration of users. */
 interface CommonRepository {
+
+    suspend fun signInWithGoogle(idToken: String): Boolean
+
+    suspend fun signInWithFacebook(token: AccessToken): Boolean
+
+    suspend fun signInWithApple(idToken: String): Boolean
 
     /** Sign in using email and password */
     suspend fun loginWithEmailAndPassword(email: String, password: String): Boolean

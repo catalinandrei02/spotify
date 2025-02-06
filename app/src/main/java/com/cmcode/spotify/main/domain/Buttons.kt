@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmcode.spotify.R
 import com.cmcode.spotify.main.domain.Constants.BUTTON_HEIGHT
+import com.cmcode.spotify.main.domain.Constants.BUTTON_TEXT_SIZE
 import com.cmcode.spotify.main.domain.Constants.BUTTON_WIDTH
 import com.cmcode.spotify.main.domain.Constants.CORNER_SHAPE
 import com.cmcode.spotify.main.domain.Constants.OUTLINE
@@ -76,8 +77,10 @@ fun OutlinedIconButton(
             Spacer(modifier = Modifier.size(SPACER_24))
             Text(
                 text = text,
-                style = MaterialTheme.typography.labelMedium,
-                color = Color.White,
+                style = MaterialTheme.typography.labelMedium.copy(
+                    fontSize = BUTTON_TEXT_SIZE
+                ),
+                color = Color.White
             )
         }
     }
@@ -109,6 +112,7 @@ fun GreenButton(
                 style =
                     MaterialTheme.typography.labelMedium.copy(
                         color = BackgroundGrey,
+                        fontSize = BUTTON_TEXT_SIZE
                     ),
             )
         }
@@ -183,7 +187,9 @@ fun ClickableText(
     Text(
         color = Color.White,
         text = text,
-        style = MaterialTheme.typography.labelMedium,
+        style = MaterialTheme.typography.labelMedium.copy(
+            fontSize = BUTTON_TEXT_SIZE
+        ),
         textAlign = TextAlign.Center,
         modifier = Modifier.clickable { onClick() },
     )

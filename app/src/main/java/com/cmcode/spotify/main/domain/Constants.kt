@@ -2,6 +2,7 @@
 package com.cmcode.spotify.main.domain
 
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Constants {
     // Error Message
@@ -24,4 +25,5 @@ object Constants {
     val SPACER_24 = 24.dp
     val OUTLINE = 2.dp
     val CORNER_SHAPE = 50.dp
+    val BUTTON_TEXT_SIZE = 18.sp
 }
